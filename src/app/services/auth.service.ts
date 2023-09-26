@@ -7,15 +7,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly loginUrl = 'https://localhost:8443/api/Auth/login'; // Update with your actual login API endpoint
-  private readonly registerUrl = 'https://localhost:8443/api/Auth/register'; // Update with your actual register API endpoint
+  private readonly loginUrl = 'https://localhost:8443/api/Auth/login'; 
+  private readonly registerUrl = 'https://localhost:8443/api/Auth/register'; 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post(this.loginUrl, { username, password }, { responseType: 'text' }) // Set responseType to 'text'
+    return this.http.post(this.loginUrl, { username, password }, { responseType: 'text' }) 
       .pipe(
         map(response => {
           console.log('Login response:', response);

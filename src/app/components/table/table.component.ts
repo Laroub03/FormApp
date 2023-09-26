@@ -2,27 +2,27 @@ import {Component} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 
 export interface PeriodicElement {
-  name: string;
+  model: string;
   position: number;
-  weight: number;
-  symbol: string;
+  amount: number;
+  change: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 1, model: 'Citroën C3', amount: 2.268, change: '-27%'},
+  {position: 2, model: 'Peugeot 208', amount: 2.107, change: '-24%'},
+  {position: 3, model: 'Kia Ceed/Xceed', amount: 1.750, change: '-1%'},
+  {position: 4, model: 'Ford Kuga', amount: 1.619, change: '-53%'},
+  {position: 5, model: 'Toyota Yaris', amount: 1.515, change: '-45%'},
+  {position: 6, model: 'VW T-Roc', amount: 1.435, change: '-7%'},
+  {position: 7, model: 'Mercedes-Benz C-class', amount: 1.361, change: '-9%'},
+  {position: 8, model: 'Hyundai i10', amount: 1.300, change: '-26%'},
+  {position: 9, model: 'Nissan Qashqai', amount: 1.246, change: '-42%'},
+  {position: 10, model: 'Toyota Yaris Cross', amount: 1.114, change: '100%'},
 ];
 
 /**
- * @title Styling columns using their auto-generated column names
+ * @title Styling columns using their auto-generated column models
  */
 @Component({
   selector: 'table-column-styling-example',
@@ -32,6 +32,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   imports: [MatTableModule],
 })
 export class TableComponent {
-  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
+  displayedColumns: string[] = ['demo-position', 'demo-model', 'demo-amount', 'demo-change'];
   dataSource = ELEMENT_DATA;
 }
