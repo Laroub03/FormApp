@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'FormApp'`, () => {
+  it(`should have as title 'LoginApp'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('FormApp');
+    expect(app.title).toEqual('LoginApp');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('FormApp app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('LoginApp app is running!');
   });
 });
