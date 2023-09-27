@@ -1,9 +1,10 @@
 <div class="align-center">
   <form (ngSubmit)="Register()">
     <input
-      id="username" 
+      id="username"
       [(ngModel)]="username"
       name="username"
+      placeholder="Username"
       required
     />
     <input
@@ -11,8 +12,21 @@
       [(ngModel)]="password"
       name="password"
       type="password"
+      placeholder="Password"
       required
     />
+    
+    <!-- Role Selection -->
+    <label for="role">Role:</label>
+    <select id="role" [(ngModel)]="role" name="role" required>
+      <option value="Editor1">Admin</option>
+      <option value="Editor2">Manager</option>
+      <option value="Viewer1">Employee</option>
+      <option value="Viewer2">Guest</option>
+    </select>
+    
+    <br>
+
     <div class="btn-div">
       <button type="submit" class="register-btn">
         Register
@@ -21,4 +35,4 @@
   </form>
   <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-  </div>
+</div>

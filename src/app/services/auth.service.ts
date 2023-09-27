@@ -14,13 +14,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.post(this.loginUrl, { username, password }, { responseType: 'text' }) 
+  login(username: string, password: string, role: string): Observable<boolean> {
+    return this.http.post(this.loginUrl, { username, password, role }, { responseType: 'text' }) 
       .pipe(
         map(response => {
           console.log('Login response:', response);
           if (response) {
-            // If a response (token) is received, set isAuthenticated to true
+            localStorage.setItem('token', response); // Store the token in local storage
             this.isAuthenticatedSubject.next(true);
             return true;
           }
@@ -28,9 +28,13 @@ export class AuthService {
         })
       );
   }
+  
 
-  register(username: string, password: string): Observable<boolean> {
-    return this.http.post<{ username: string, passwordHash: string }>(this.registerUrl, { username, password }).pipe(
+  register(username: string, password: string, role: string): Observable<boolean> {
+    return this.http.post<{ username: string, passwordHash: string, role: string }>(
+      this.registerUrl, 
+      { username, password, role }
+    ).pipe(
       map(response => {
         console.log('Register response:', response); // Log the server response
         if (response.username) {

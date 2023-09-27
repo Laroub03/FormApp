@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditDialogComponent, DialogData } from '../edit/edit-dialog.component';
+import jwtDecode from 'jwt-decode';
 
 export interface PeriodicElement {
   model: string;
@@ -21,17 +24,48 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, model: 'Toyota Yaris Cross', amount: 1.114, change: '100%'},
 ];
 
-/**
- * @title Styling columns using their auto-generated column models
- */
 @Component({
   selector: 'table-column-styling-example',
   styleUrls: ['./table.component.css'],
   templateUrl: './table.component.html',
-  standalone: true,
-  imports: [MatTableModule],
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   displayedColumns: string[] = ['demo-position', 'demo-model', 'demo-amount', 'demo-change'];
   dataSource = ELEMENT_DATA;
+  isEditor: boolean = false;
+
+  constructor(public dialog: MatDialog) {
+    // Check the user's role and set isEditor accordingly
+    const token = localStorage.getItem('token');
+    console.log(token); // Check if the token is retrieved correctly    
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      const userRole = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      console.log(decodedToken); // Log the decoded token to check the role
+      this.isEditor = userRole === 'Editor1' || userRole === 'Editor2';
+      console.log('isEditor:', this.isEditor); // Log the value of isEditor
+    }    
+  }
+
+  ngOnInit(): void {
+    if (this.isEditor) {
+      this.displayedColumns.push('edit');
+    }
+  }
+
+  editElement(element: PeriodicElement): void {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: '250px',
+      data: {model: element.model, amount: element.amount, change: element.change}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        element.model = result.model;
+        element.amount = result.amount;
+        element.change = result.change;
+      }
+    });
+  }
 }

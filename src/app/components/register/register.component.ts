@@ -9,13 +9,14 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   username = '';
   password = '';
+  role = '';
   successMessage = '';
   errorMessage = '';
 
   constructor(private authService: AuthService) { }
 
   Register(): void {
-    this.authService.register(this.username, this.password).subscribe(
+    this.authService.register(this.username, this.password, this.role).subscribe(
       () => {
         this.successMessage = 'Registration successful';
         this.errorMessage = '';

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Edit Element</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Model</mat-label>
+    <input matInput [(ngModel)]="data.model">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Amount</mat-label>
+    <input matInput [(ngModel)]="data.amount" type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Change</mat-label>
+    <input matInput [(ngModel)]="data.change">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data">Save</button>
+</div>

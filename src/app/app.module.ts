@@ -11,6 +11,13 @@ import { TableComponent } from './components/table/table.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { AuthService } from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { EditDialogComponent } from './components/edit/edit-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,14 +26,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    LandingComponent
+    LandingComponent,
+    TableComponent,
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

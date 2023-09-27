@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  role = '';
   errorMessage: string = '';
 
   constructor(
@@ -18,7 +19,7 @@ export class LoginComponent {
   ) {}
 
   Login(): void {
-    this.authService.login(this.username, this.password).subscribe(
+    this.authService.login(this.username, this.password, this.role).subscribe(
       success => {
         if (success) {
           console.log('Login successful!'); // Log successful login
