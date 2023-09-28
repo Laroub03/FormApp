@@ -10,7 +10,11 @@ export class AuthService {
   private readonly loginUrl = 'https://localhost:8443/api/Auth/login'; 
   private readonly registerUrl = 'https://localhost:8443/api/Auth/register'; 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+
+  get isAuthenticatedValue(): boolean {
+    return this.isAuthenticatedSubject.value;
+  }
+
 
   constructor(private http: HttpClient) {}
 
